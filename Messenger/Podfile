@@ -1,0 +1,6 @@
+
+
+target 'Messenger' do
+  use_frameworks!
+
+end
