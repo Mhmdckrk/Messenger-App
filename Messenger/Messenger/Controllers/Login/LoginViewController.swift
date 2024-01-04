@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -109,10 +110,23 @@ class LoginViewController: UIViewController {
             alertUserLoginError()
             return }
         
+        // Firebase Log In
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) {
+            [weak self] authResult, error in
+            guard let self = self else { return }
+            
+            guard let result = authResult, error == nil else {
+                print("Failed to log in user with email: \(email)")
+                return
+            }
+            
+            let user = result.user
+            print("Logged In User: \(user)")
+            self.navigationController?.dismiss(animated: true)
+        }
+        
     }
-    
-    // Firebase Login
-    
+        
     func alertUserLoginError() {
         let alert = UIAlertController(title: "Woops", message: "Please enter all information to log in", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel))
@@ -125,17 +139,6 @@ class LoginViewController: UIViewController {
         vc.title = "Create Account"
         navigationController?.pushViewController(vc, animated: true)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
