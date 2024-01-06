@@ -2,10 +2,36 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>Please allow access to take a profile picture</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Please allow access to select photo from library</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb228985956914102</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.614758364658-46bcgkn49if25ecmvo44uqcom2p3iusp</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>228985956914102</string>
+	<key>FacebookClientToken</key>
+	<string>92044b1e7acfa6cc23deb9eed79b16d8</string>
+	<key>FacebookDisplayName</key>
+	<string>My Messenger</string>
+	<key>GIDClientID</key>
+	<string>614758364658-46bcgkn49if25ecmvo44uqcom2p3iusp.apps.googleusercontent.com</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

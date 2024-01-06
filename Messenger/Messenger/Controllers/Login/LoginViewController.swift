@@ -7,6 +7,10 @@
 
 import UIKit
 import FirebaseAuth
+import FacebookLogin
+import GoogleSignIn
+import Firebase
+
 
 class LoginViewController: UIViewController {
     
@@ -40,6 +44,17 @@ class LoginViewController: UIViewController {
         return field
     }()
     
+    private let loginFBButton: FBLoginButton = {
+       let button = FBLoginButton()
+        button.permissions = ["email","public_profile"]
+        return button
+    }()
+    
+    private let loginGoogleButton: GIDSignInButton = {
+        let button = GIDSignInButton()
+        return button
+    }()
+    
     private let passwordField: UITextField = {
         let field = UITextField()
         field.autocapitalizationType = .none
@@ -71,15 +86,17 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Log In"
-        view.backgroundColor = .yellow
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Register", style: .done, target: self, action: #selector(didTapRegister))
 
 
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        loginGoogleButton.addTarget(self, action: #selector(googleButtonTapped), for: .touchUpInside)
         
         emailField.delegate = self
         passwordField.delegate = self
+        
+        loginFBButton.delegate = self
         
         // Add Subviews
         view.addSubview(scrollView)
@@ -87,6 +104,10 @@ class LoginViewController: UIViewController {
         scrollView.addSubview(emailField)
         scrollView.addSubview(passwordField)
         scrollView.addSubview(loginButton)
+        
+        scrollView.addSubview(loginFBButton)
+        
+        scrollView.addSubview(loginGoogleButton)
     }
     
     override func viewDidLayoutSubviews() {
@@ -97,8 +118,14 @@ class LoginViewController: UIViewController {
         emailField.frame = CGRect(x: 30, y: imageView.bottom+10, width: scrollView.width-60, height: 52)
         passwordField.frame = CGRect(x: 30, y: emailField.bottom+10, width: scrollView.width-60, height: 52)
         loginButton.frame = CGRect(x: 30, y: passwordField.bottom+10, width: scrollView.width-60, height: 52)
+        loginFBButton.frame = CGRect(x: 30, y: loginButton.bottom+10, width: scrollView.width-60, height: 52)
+        loginGoogleButton.frame = CGRect(x: 30, y: loginFBButton.bottom+10, width: scrollView.width-60, height: 52)
 
 
+    }
+    
+    @objc private func googleButtonTapped() {
+        signInWithGoogle()
     }
     
     @objc private func loginButtonTapped() {
@@ -156,4 +183,153 @@ extension LoginViewController: UITextFieldDelegate {
         
         return true
     }
+}
+
+extension LoginViewController: LoginButtonDelegate {
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginKit.FBLoginButton) {
+        // no operation
+    }
+    
+    func loginButton(_ loginButton: FBSDKLoginKit.FBLoginButton, didCompleteWith result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {
+        guard let token = result?.token?.tokenString else {
+            print("User failed to log in with facebook")
+            return }
+        
+        let facebookRequest = FacebookLogin.GraphRequest(graphPath: "me", parameters: ["fields": "email, name"], tokenString: token, version: nil, httpMethod: .get)
+        
+        facebookRequest.start { connection, result, error in
+            guard let result = result as? [String: Any], error == nil else {
+                print("Failed to make facebook graph request")
+                return
+            }
+            
+            print(result)
+            guard let userName = result["name"] as? String,
+                  let email = result["email"] as? String else {
+                print("Failed to get email and name from fb result")
+                return
+            }
+            let nameComponents = userName.components(separatedBy: " ")
+            guard nameComponents.count == 2 else { return }
+            
+            let firstName = nameComponents[0]
+            let lastName = nameComponents[1]
+            
+            DatabaseManager.shared.userExists(with: email) { exists in
+                if !exists {
+                    DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email))
+                }
+            }
+            
+            let credential = FacebookAuthProvider.credential(withAccessToken: token)
+            
+            FirebaseAuth.Auth.auth().signIn(with: credential) {
+                [weak self]
+                authResult, error in
+                guard let strongSelf = self else { return }
+                guard authResult != nil, error == nil else {
+                    if let error = error {
+                        print("Facebook credential login failed, MFA may be needed - \(error)")
+                    }
+                    return
+                }
+                
+                print("Successfully logged user In")
+                strongSelf.navigationController?.dismiss(animated: true)
+                
+            }
+
+        }
+        
+    }
+    
+    
+}
+
+extension LoginViewController {
+    
+// login with Google
+    func signInWithGoogle() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+          guard error == nil else {
+            // ...
+              fatalError("hello1")
+          }
+
+          guard let user = result?.user,
+            let idToken = user.idToken?.tokenString
+          else {
+            // ...
+              fatalError("hello2")
+          }
+            
+            print("Did sign in with Google: \(user)")
+            
+            guard let email = user.profile?.email, let firstName = user.profile?.givenName, let lastName = user.profile?.familyName else { return }
+            DatabaseManager.shared.userExists(with: email) { exists in
+                if !exists {
+                    // if doesnt insert to database
+                    DatabaseManager.shared.insertUser(with: ChatAppUser(firstName: firstName, lastName: lastName, emailAddress: email))
+                }
+            }
+            
+          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                         accessToken: user.accessToken.tokenString)
+            
+            FirebaseAuth.Auth.auth().signIn(with: credential) { [weak self] authResult, error in
+                guard let strongSelf = self else { return }
+                guard authResult != nil, error == nil else {
+                    print("failed to log in with google credential")
+                    return
+                }
+                
+                print("Successfully signed in with Google credential")
+                strongSelf.navigationController?.dismiss(animated: true)
+            }
+
+          // ...
+        }
+    }
+    
+    
+    // Create Google Sign In configuration object.
+    
+//    func signInWithGoogle() -> Bool {
+//        guard let clientID = FirebaseApp.app()?.options.clientID else { fatalError("No client ID found") }
+//
+//        // Create Google Sign In configuration object.
+//        let config = GIDConfiguration(clientID: clientID)
+//        GIDSignIn.sharedInstance.configuration = config
+//        
+//        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+//              let window = windowScene.windows.first,
+//              let rootViewController = window.rootViewController else {
+//            print("There is no root view controller")
+//            return false
+//        }
+//        
+//   
+//        guard let userAuthentication = GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController) else { fatalError("hello") }
+//            let user = userAuthentication.user
+//            guard let idToken = user.idToken else {
+//                fatalError("token error")
+//            }
+//            let accessToken = user.accessToken
+//            let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString, accessToken: accessToken.tokenString)
+//            let result = Auth.auth().signIn(with: credential)
+//            let firebaseUser = result.user
+//            print("User \(firebaseUser.uid) signed in with email \(firebaseUser.email ?? "unknown")")
+//            return true
+//        
+//        return false
+//    }
+    
+
 }
