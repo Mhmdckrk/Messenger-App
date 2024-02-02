@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C68417B2B6BAA5B00C267FD /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9C68417A2B6BAA5B00C267FD /* GoogleSignIn */; };
+		9C68417D2B6BAA5B00C267FD /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9C68417C2B6BAA5B00C267FD /* GoogleSignInSwift */; };
+		9C68417F2B6BC15C00C267FD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C68417E2B6BC15C00C267FD /* StorageManager.swift */; };
 		9C91D4672B4852E00075669A /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 9C91D4662B4852E00075669A /* FacebookLogin */; };
 		9CA4317D2B4583AF00D3E004 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4317C2B4583AF00D3E004 /* AppDelegate.swift */; };
 		9CA4317F2B4583AF00D3E004 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4317E2B4583AF00D3E004 /* SceneDelegate.swift */; };
@@ -23,14 +26,14 @@
 		9CA431A42B45C88C00D3E004 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA431A32B45C88C00D3E004 /* Extensions.swift */; };
 		9CB277FD2B46BC2000A2C916 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB277FC2B46BC2000A2C916 /* DatabaseManager.swift */; };
 		9CB34EDF2B49395C008DB217 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CB34EDE2B49395C008DB217 /* GoogleService-Info.plist */; };
-		9CB34EE22B493B25008DB217 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9CB34EE12B493B25008DB217 /* GoogleSignIn */; };
-		9CB34EE42B493B25008DB217 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9CB34EE32B493B25008DB217 /* GoogleSignInSwift */; };
 		9CB34EE62B4952A3008DB217 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB34EE52B4952A3008DB217 /* AuthenticationViewModel.swift */; };
+		9CB34EE82B49B03F008DB217 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB34EE72B49B03F008DB217 /* ChatViewController.swift */; };
 		A0C030816CF46B9E565F8BC8 /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA78CBCB22C5A3120AC4606B /* Pods_Messenger.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3298639878C8D223A3EC8F8E /* Pods-Messenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.debug.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.debug.xcconfig"; sourceTree = "<group>"; };
+		9C68417E2B6BC15C00C267FD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		9C91D4642B4846110075669A /* Messenger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Messenger.entitlements; sourceTree = "<group>"; };
 		9CA431792B4583AF00D3E004 /* Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CA4317C2B4583AF00D3E004 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +53,7 @@
 		9CB277FC2B46BC2000A2C916 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		9CB34EDE2B49395C008DB217 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9CB34EE52B4952A3008DB217 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		9CB34EE72B49B03F008DB217 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		B9C5BE3D6F4283E0548E3FF4 /* Pods-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger.release.xcconfig"; path = "Target Support Files/Pods-Messenger/Pods-Messenger.release.xcconfig"; sourceTree = "<group>"; };
 		FA78CBCB22C5A3120AC4606B /* Pods_Messenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -61,8 +65,8 @@
 			files = (
 				9C91D4672B4852E00075669A /* FacebookLogin in Frameworks */,
 				A0C030816CF46B9E565F8BC8 /* Pods_Messenger.framework in Frameworks */,
-				9CB34EE22B493B25008DB217 /* GoogleSignIn in Frameworks */,
-				9CB34EE42B493B25008DB217 /* GoogleSignInSwift in Frameworks */,
+				9C68417B2B6BAA5B00C267FD /* GoogleSignIn in Frameworks */,
+				9C68417D2B6BAA5B00C267FD /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +123,7 @@
 				9CA4319C2B4599CC00D3E004 /* VideoPlayerViewController.swift */,
 				9CA4319E2B459A0500D3E004 /* NewConversationViewController.swift */,
 				9CA431A02B459A1B00D3E004 /* ProfileViewController.swift */,
+				9CB34EE72B49B03F008DB217 /* ChatViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				9CA4317E2B4583AF00D3E004 /* SceneDelegate.swift */,
 				9CA431A32B45C88C00D3E004 /* Extensions.swift */,
 				9CB277FC2B46BC2000A2C916 /* DatabaseManager.swift */,
+				9C68417E2B6BC15C00C267FD /* StorageManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -205,8 +211,8 @@
 			name = Messenger;
 			packageProductDependencies = (
 				9C91D4662B4852E00075669A /* FacebookLogin */,
-				9CB34EE12B493B25008DB217 /* GoogleSignIn */,
-				9CB34EE32B493B25008DB217 /* GoogleSignInSwift */,
+				9C68417A2B6BAA5B00C267FD /* GoogleSignIn */,
+				9C68417C2B6BAA5B00C267FD /* GoogleSignInSwift */,
 			);
 			productName = Messenger;
 			productReference = 9CA431792B4583AF00D3E004 /* Messenger.app */;
@@ -238,7 +244,7 @@
 			mainGroup = 9CA431702B4583AF00D3E004;
 			packageReferences = (
 				9C91D4652B4852E00075669A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
-				9CB34EE02B493B25008DB217 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				9C6841792B6BAA5A00C267FD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 9CA4317A2B4583AF00D3E004 /* Products */;
 			projectDirPath = "";
@@ -313,12 +319,14 @@
 				9CB34EE62B4952A3008DB217 /* AuthenticationViewModel.swift in Sources */,
 				9CA431972B45998400D3E004 /* LoginViewController.swift in Sources */,
 				9CB277FD2B46BC2000A2C916 /* DatabaseManager.swift in Sources */,
+				9C68417F2B6BC15C00C267FD /* StorageManager.swift in Sources */,
 				9CA431992B45999800D3E004 /* RegisterViewController.swift in Sources */,
 				9CA4319F2B459A0500D3E004 /* NewConversationViewController.swift in Sources */,
 				9CA431812B4583AF00D3E004 /* ConversationsViewController.swift in Sources */,
 				9CA4319D2B4599CC00D3E004 /* VideoPlayerViewController.swift in Sources */,
 				9CA431A42B45C88C00D3E004 /* Extensions.swift in Sources */,
 				9CA4317D2B4583AF00D3E004 /* AppDelegate.swift in Sources */,
+				9CB34EE82B49B03F008DB217 /* ChatViewController.swift in Sources */,
 				9CA431A12B459A1B00D3E004 /* ProfileViewController.swift in Sources */,
 				9CA4317F2B4583AF00D3E004 /* SceneDelegate.swift in Sources */,
 				9CA4319B2B4599BF00D3E004 /* PhotoViewerViewController.swift in Sources */,
@@ -545,6 +553,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9C6841792B6BAA5A00C267FD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		9C91D4652B4852E00075669A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
@@ -553,31 +569,23 @@
 				minimumVersion = 14.0.0;
 			};
 		};
-		9CB34EE02B493B25008DB217 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9C68417A2B6BAA5B00C267FD /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C6841792B6BAA5A00C267FD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		9C68417C2B6BAA5B00C267FD /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9C6841792B6BAA5A00C267FD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
 		9C91D4662B4852E00075669A /* FacebookLogin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9C91D4652B4852E00075669A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookLogin;
-		};
-		9CB34EE12B493B25008DB217 /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9CB34EE02B493B25008DB217 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
-		};
-		9CB34EE32B493B25008DB217 /* GoogleSignInSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9CB34EE02B493B25008DB217 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

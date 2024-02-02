@@ -6,6 +6,7 @@ target 'Messenger' do
 pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
+pod 'Firebase/Storage'
 
 # SDWebImage for catching image all good stuff
 # RealmSwift for like CoreData but plus optimizing

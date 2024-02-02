@@ -74,7 +74,7 @@
         FFLog(@"I-RDB024002", @"Using default host for project %@",
               app.options.projectID);
         url = [NSString
-            stringWithFormat:@"https://messenger-9065d-default-rtdb.europe-west1.firebasedatabase.app",
+            stringWithFormat:@"https://%@-default-rtdb.firebaseio.com",
                              app.options.projectID];
     }
     return [FIRDatabase databaseForApp:app URL:url];
