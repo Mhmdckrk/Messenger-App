@@ -157,6 +157,8 @@ class LoginViewController: UIViewController {
                 return
             }
             
+            UserDefaults.standard.set(email, forKey: "email")
+            
             let user = result.user
             print("Logged In User: \(user)")
             self.navigationController?.dismiss(animated: true)
@@ -225,6 +227,9 @@ extension LoginViewController: LoginButtonDelegate {
                 print("Failed to get email and name from fb result")
                 return
             }
+            
+            UserDefaults.standard.set(email, forKey: "email")
+            
 //            let nameComponents = userName.components(separatedBy: " ")
 //            guard nameComponents.count == 2 else { return }
 //            let firstName = nameComponents[0]
@@ -315,9 +320,13 @@ extension LoginViewController {
               fatalError("hello2")
           }
             
+            
             print("Did sign in with Google: \(user)")
             
             guard let email = user.profile?.email, let firstName = user.profile?.givenName, let lastName = user.profile?.familyName else { return }
+            
+            UserDefaults.standard.set(email, forKey: "email")
+            
             DatabaseManager.shared.userExists(with: email) { exists in
                 if !exists {
                     // if doesnt insert to database
