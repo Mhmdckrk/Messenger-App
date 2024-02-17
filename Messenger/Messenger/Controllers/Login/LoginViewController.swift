@@ -159,6 +159,25 @@ class LoginViewController: UIViewController {
             
             UserDefaults.standard.set(email, forKey: "email")
             
+            let safeEmail = DatabaseManager.safeEmail(emailAddress: email)
+            DatabaseManager.shared.getDataFor(path: safeEmail) { result in
+                switch result {
+                case .success(let data):
+                    guard let userData = data as? [String: Any],
+                          let firstName = userData["first_name"] as? String,
+                          let lastName = userData["last_name"] as? String
+                    else { return }
+                    
+                UserDefaults.standard.set("\(firstName) \(lastName)", forKey: "name")
+
+                case .failure(let error):
+                    print("Failed to read data \(error)")
+                }
+                
+
+            }
+            
+            
             let user = result.user
             print("Logged In User: \(user)")
             self.navigationController?.dismiss(animated: true)
@@ -229,6 +248,8 @@ extension LoginViewController: LoginButtonDelegate {
             }
             
             UserDefaults.standard.set(email, forKey: "email")
+            UserDefaults.standard.set("\(firstName) \(lastName)", forKey: "name")
+
             
 //            let nameComponents = userName.components(separatedBy: " ")
 //            guard nameComponents.count == 2 else { return }
@@ -323,9 +344,13 @@ extension LoginViewController {
             
             print("Did sign in with Google: \(user)")
             
-            guard let email = user.profile?.email, let firstName = user.profile?.givenName, let lastName = user.profile?.familyName else { return }
+            guard let email = user.profile?.email,
+                    let firstName = user.profile?.givenName,
+                    let lastName = user.profile?.familyName else { return }
             
             UserDefaults.standard.set(email, forKey: "email")
+            UserDefaults.standard.set("\(firstName) \(lastName)", forKey: "name")
+
             
             DatabaseManager.shared.userExists(with: email) { exists in
                 if !exists {
