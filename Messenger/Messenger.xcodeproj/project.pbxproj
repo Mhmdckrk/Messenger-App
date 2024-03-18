@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9C68417B2B6BAA5B00C267FD /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9C68417A2B6BAA5B00C267FD /* GoogleSignIn */; };
-		9C68417D2B6BAA5B00C267FD /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9C68417C2B6BAA5B00C267FD /* GoogleSignInSwift */; };
 		9C68417F2B6BC15C00C267FD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C68417E2B6BC15C00C267FD /* StorageManager.swift */; };
 		9C91D4672B4852E00075669A /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 9C91D4662B4852E00075669A /* FacebookLogin */; };
 		9C9E7A322B7E124700B25C81 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E7A312B7E124700B25C81 /* ConversationTableViewCell.swift */; };
@@ -29,6 +27,8 @@
 		9CB34EDF2B49395C008DB217 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CB34EDE2B49395C008DB217 /* GoogleService-Info.plist */; };
 		9CB34EE62B4952A3008DB217 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB34EE52B4952A3008DB217 /* AuthenticationViewModel.swift */; };
 		9CB34EE82B49B03F008DB217 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB34EE72B49B03F008DB217 /* ChatViewController.swift */; };
+		9CF0F16B2BA88BCB003F6DEE /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9CF0F16A2BA88BCB003F6DEE /* GoogleSignIn */; };
+		9CF0F16D2BA88BCB003F6DEE /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9CF0F16C2BA88BCB003F6DEE /* GoogleSignInSwift */; };
 		A0C030816CF46B9E565F8BC8 /* Pods_Messenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA78CBCB22C5A3120AC4606B /* Pods_Messenger.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,8 +67,8 @@
 			files = (
 				9C91D4672B4852E00075669A /* FacebookLogin in Frameworks */,
 				A0C030816CF46B9E565F8BC8 /* Pods_Messenger.framework in Frameworks */,
-				9C68417B2B6BAA5B00C267FD /* GoogleSignIn in Frameworks */,
-				9C68417D2B6BAA5B00C267FD /* GoogleSignInSwift in Frameworks */,
+				9CF0F16B2BA88BCB003F6DEE /* GoogleSignIn in Frameworks */,
+				9CF0F16D2BA88BCB003F6DEE /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +205,7 @@
 				9CA431752B4583AF00D3E004 /* Sources */,
 				9CA431762B4583AF00D3E004 /* Frameworks */,
 				9CA431772B4583AF00D3E004 /* Resources */,
-				337E9AB9F23B35CD461E20C9 /* [CP] Embed Pods Frameworks */,
+				3CCDE6441A4182862399B377 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,8 +214,8 @@
 			name = Messenger;
 			packageProductDependencies = (
 				9C91D4662B4852E00075669A /* FacebookLogin */,
-				9C68417A2B6BAA5B00C267FD /* GoogleSignIn */,
-				9C68417C2B6BAA5B00C267FD /* GoogleSignInSwift */,
+				9CF0F16A2BA88BCB003F6DEE /* GoogleSignIn */,
+				9CF0F16C2BA88BCB003F6DEE /* GoogleSignInSwift */,
 			);
 			productName = Messenger;
 			productReference = 9CA431792B4583AF00D3E004 /* Messenger.app */;
@@ -247,7 +247,7 @@
 			mainGroup = 9CA431702B4583AF00D3E004;
 			packageReferences = (
 				9C91D4652B4852E00075669A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
-				9C6841792B6BAA5A00C267FD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				9CF0F1692BA88BCB003F6DEE /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 9CA4317A2B4583AF00D3E004 /* Products */;
 			projectDirPath = "";
@@ -273,7 +273,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		337E9AB9F23B35CD461E20C9 /* [CP] Embed Pods Frameworks */ = {
+		3CCDE6441A4182862399B377 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -557,14 +557,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9C6841792B6BAA5A00C267FD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
 		9C91D4652B4852E00075669A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
@@ -573,23 +565,31 @@
 				minimumVersion = 14.0.0;
 			};
 		};
+		9CF0F1692BA88BCB003F6DEE /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9C68417A2B6BAA5B00C267FD /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9C6841792B6BAA5A00C267FD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
-		};
-		9C68417C2B6BAA5B00C267FD /* GoogleSignInSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 9C6841792B6BAA5A00C267FD /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignInSwift;
-		};
 		9C91D4662B4852E00075669A /* FacebookLogin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9C91D4652B4852E00075669A /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookLogin;
+		};
+		9CF0F16A2BA88BCB003F6DEE /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9CF0F1692BA88BCB003F6DEE /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		9CF0F16C2BA88BCB003F6DEE /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9CF0F1692BA88BCB003F6DEE /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
